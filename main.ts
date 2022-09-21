@@ -1,20 +1,20 @@
+function Arrêter_la_note_par_radio (canalmidi: number, notemidi: number, grouperadio: number) {
+    radio.setGroup(grouperadio)
+    radio.sendNumber(1000 * canalmidi + notemidi)
+}
 input.onButtonPressed(Button.A, function () {
-    radio.sendNumber((1000 * canal + note) * -1)
+    Arrêter_la_note_par_radio(1, 36, 1)
+    Jouer_la_note_par_radio(1, 1, 1)
 })
+function Jouer_la_note_par_radio (canalmidi: number, notemidi: number, grouperadio: number) {
+    radio.setGroup(grouperadio)
+    radio.sendNumber(1000 * canalmidi + notemidi)
+}
 input.onGesture(Gesture.ThreeG, function () {
-    radio.sendNumber((1000 * canal + note) * -1)
-    radio.sendNumber(1000 * canal + note)
+    Arrêter_la_note_par_radio(1, 36, 1)
 })
-let note = 0
-let canal = 0
-radio.setGroup(1)
-canal = 1
-basic.showNumber(canal)
-note = 36
-basic.pause(500)
-basic.clearScreen()
 basic.forever(function () {
     if (input.lightLevel() == 0) {
-        radio.sendNumber((1000 * canal + note) * -1)
+        Arrêter_la_note_par_radio(1, 36, 1)
     }
 })
